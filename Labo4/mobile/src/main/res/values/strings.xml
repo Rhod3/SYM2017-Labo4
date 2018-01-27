@@ -13,7 +13,7 @@
 
     <string name="pending_id">my_channel_01</string>
     <string name="pending_title">Pending notification</string>
-    <string name="pending_text">This is a pending notificaiton</string>
+    <string name="pending_text">This is a pending notification</string>
 
     <string name="action_id">my_channel_02</string>
     <string name="action_title">Action notification</string>

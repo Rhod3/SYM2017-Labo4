@@ -57,10 +57,8 @@ public class NotificationActivity extends AppCompatActivity {
     }
 
     private void pendingIntentNotification() {
-        //PendingIntent viewPendingIntent = createPendingIntent(0, getString(R.string.toast_phone));
-
         notificationBuilder = new NotificationCompat.Builder(this, getString(R.string.pending_id))
-                .setSmallIcon(R.drawable.ic_lightbulb_on_black_18dp)
+                .setSmallIcon(R.drawable.ic_lightbulb_on_white_18dp)
                 .setContentTitle(getString(R.string.pending_title))
                 .setContentText(getString(R.string.pending_text))
                 .setContentIntent(createPendingIntent(0, getString(R.string.toast_phone)));
@@ -69,30 +67,26 @@ public class NotificationActivity extends AppCompatActivity {
     }
 
     private void actionNotification() {
-        //PendingIntent viewPendingIntent = createPendingIntent(0, getString(R.string.toast_phone));
-
         notificationBuilder = new NotificationCompat.Builder(this, getString(R.string.action_id))
-                .setSmallIcon(R.drawable.ic_lightbulb_on_black_18dp)
+                .setSmallIcon(R.drawable.ic_lightbulb_on_white_18dp)
                 .setContentTitle(getString(R.string.action_title))
                 .setContentText(getString(R.string.action_text))
-                .addAction(R.drawable.ic_alert_black_18dp, getString(R.string.action_button_text),
+                .addAction(R.drawable.ic_lightbulb_on_white_18dp, getString(R.string.action_button_text),
                         createPendingIntent(0, getString(R.string.toast_phone)));
 
         notify(notificationBuilder.build());
     }
 
     private void wearableOnlyNotification() {
-        //PendingIntent viewPendingIntent = createPendingIntent(0, getString(R.string.toast_phone));
-
         NotificationCompat.WearableExtender wearableExtender =
                 new NotificationCompat.WearableExtender().setHintHideIcon(true);
 
         notificationBuilder = new NotificationCompat.Builder(this, getString(R.string.wearable_only_id))
-                .setSmallIcon(R.drawable.ic_lightbulb_on_black_18dp)
+                .setSmallIcon(R.drawable.ic_lightbulb_on_white_18dp)
                 .setContentTitle(getString(R.string.wearable_only_title))
                 .setContentText(getString(R.string.wearable_only_text))
                 .extend(wearableExtender)
-                .addAction(R.drawable.ic_alert_black_18dp, getString(R.string.action_button_text),
+                .addAction(R.drawable.ic_lightbulb_on_white_18dp, getString(R.string.action_button_text),
                         createPendingIntent(0, getString(R.string.toast_phone)));
 
         notify(notificationBuilder.build());

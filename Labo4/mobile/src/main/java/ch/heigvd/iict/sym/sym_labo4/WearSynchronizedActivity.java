@@ -17,9 +17,6 @@ import com.google.android.gms.wearable.Wearable;
 import ch.heigvd.iict.sym.wearcommon.Constants;
 
 public class WearSynchronizedActivity extends AppCompatActivity implements DataClient.OnDataChangedListener {
-
-    private static final String TAG = WearSynchronizedActivity.class.getSimpleName();
-
     // Inspired from https://developer.android.com/training/wearables/data-layer/data-items.html
     @Override
     protected void onCreate(Bundle savedInstanceState) {
