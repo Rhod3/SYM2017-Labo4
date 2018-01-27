@@ -10,33 +10,32 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ch.heigvd.iict.sym.sym_labo4.NotificationActivity">
 
-
-    <Button
-        android:id="@+id/button_notif_builder"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="111dp"
-        android:text="Notification Builder" />
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/action_notif_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button_notif_builder"
-        android:layout_alignStart="@+id/button_notif_builder"
-        android:layout_below="@+id/button_notif_builder"
-        android:layout_marginTop="14dp"
-        android:text="Action notif button" />
+        <Button
+            android:id="@+id/notif_btn_pending"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/notif_btn_pending" />
 
-    <Button
-        android:id="@+id/wear_action_notif"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/action_notif_button"
-        android:layout_alignStart="@+id/action_notif_button"
-        android:layout_below="@+id/action_notif_button"
-        android:layout_marginTop="20dp"
-        android:text="Wearable action notif" />
+        <Button
+            android:id="@+id/notif_btn_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/notif_btn_pending"
+            android:text="@string/notif_btn_action" />
+
+        <Button
+            android:id="@+id/notif_btn_wearable_only"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/notif_btn_action"
+            android:text="@string/notif_btn_wearable_only" />
+
+    </LinearLayout>
 </RelativeLayout>

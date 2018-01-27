@@ -7,4 +7,22 @@
     <string name="notification_btn_display_notification">Display</string>
     <string name="notification_wear_action">Say Hello !</string>
 
+    <string name="notif_btn_pending">Pending Intent</string>
+    <string name="notif_btn_action">Action Button</string>
+    <string name="notif_btn_wearable_only">Wearable Only</string>
+
+    <string name="pending_id">my_channel_01</string>
+    <string name="pending_title">Pending notification</string>
+    <string name="pending_text">This is a pending notificaiton</string>
+
+    <string name="action_id">my_channel_02</string>
+    <string name="action_title">Action notification</string>
+    <string name="action_text">This is a notification with an action button</string>
+    <string name="action_button_text">Click here!</string>
+
+    <string name="wearable_only_id">my_channel_03</string>
+    <string name="wearable_only_title">Wearable Only Action</string>
+    <string name="wearable_only_text">This is a wearable only notification</string>
+
+    <string name="toast_phone">This is a toast on a phone</string>
 </resources>

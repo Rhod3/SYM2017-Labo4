@@ -15,9 +15,12 @@ import android.widget.Toast;
 import ch.heigvd.iict.sym.wearcommon.Constants;
 
 public class NotificationActivity extends AppCompatActivity {
-    private Button pendingIntentButton;
-    private Button actionButtonButton;
-    private Button wearableOnlyButton;
+
+    private Button pendingIntent;
+    private Button action;
+    private Button wearableOnly;
+
+    private NotificationCompat.Builder notificationBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,25 +30,25 @@ public class NotificationActivity extends AppCompatActivity {
         if (getIntent() != null)
             onNewIntent(getIntent());
 
-        pendingIntentButton = findViewById(R.id.button_notif_builder);
-        actionButtonButton = findViewById(R.id.action_notif_button);
-        wearableOnlyButton = findViewById(R.id.wear_action_notif);
+        pendingIntent = findViewById(R.id.notif_btn_pending);
+        action = findViewById(R.id.notif_btn_action);
+        wearableOnly = findViewById(R.id.notif_btn_wearable_only);
 
-        pendingIntentButton.setOnClickListener(new View.OnClickListener() {
+        pendingIntent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 pendingIntentNotification();
             }
         });
 
-        actionButtonButton.setOnClickListener(new View.OnClickListener() {
+        action.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                actionButtonNotification();
+                actionNotification();
             }
         });
 
-        wearableOnlyButton.setOnClickListener(new View.OnClickListener() {
+        wearableOnly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 wearableOnlyNotification();
@@ -54,60 +57,45 @@ public class NotificationActivity extends AppCompatActivity {
     }
 
     private void pendingIntentNotification() {
-        String id = "my_channel_01";
+        //PendingIntent viewPendingIntent = createPendingIntent(0, getString(R.string.toast_phone));
 
-        String title = "Title";
-        String text = "Notification Text";
-
-        PendingIntent viewPendingIntent = createPendingIntent(0, text);
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, id)
+        notificationBuilder = new NotificationCompat.Builder(this, getString(R.string.pending_id))
                 .setSmallIcon(R.drawable.ic_lightbulb_on_black_18dp)
-                .setContentTitle(title)
-                .setContentText(text)
-                .setContentIntent(viewPendingIntent);
+                .setContentTitle(getString(R.string.pending_title))
+                .setContentText(getString(R.string.pending_text))
+                .setContentIntent(createPendingIntent(0, getString(R.string.toast_phone)));
 
-        notify(builder.build());
+        notify(notificationBuilder.build());
     }
 
-    private void actionButtonNotification() {
-        String id = "my_channel_02";
+    private void actionNotification() {
+        //PendingIntent viewPendingIntent = createPendingIntent(0, getString(R.string.toast_phone));
 
-        String title = "Title";
-        String text = "Notification Text";
-
-        PendingIntent viewPendingIntent = createPendingIntent(0, text);
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, id)
+        notificationBuilder = new NotificationCompat.Builder(this, getString(R.string.action_id))
                 .setSmallIcon(R.drawable.ic_lightbulb_on_black_18dp)
-                .setContentTitle(title)
-                .setContentText(text)
-                .addAction(R.drawable.ic_alert_black_18dp, "Click to display a toast on the phone.",
-                        viewPendingIntent);
+                .setContentTitle(getString(R.string.action_title))
+                .setContentText(getString(R.string.action_text))
+                .addAction(R.drawable.ic_alert_black_18dp, getString(R.string.action_button_text),
+                        createPendingIntent(0, getString(R.string.toast_phone)));
 
-        notify(builder.build());
+        notify(notificationBuilder.build());
     }
 
     private void wearableOnlyNotification() {
-        String id = "my_channel_02";
-
-        String title = "Title";
-        String text = "Notification Text";
-
-        PendingIntent viewPendingIntent = createPendingIntent(0, text);
+        //PendingIntent viewPendingIntent = createPendingIntent(0, getString(R.string.toast_phone));
 
         NotificationCompat.WearableExtender wearableExtender =
                 new NotificationCompat.WearableExtender().setHintHideIcon(true);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, id)
+        notificationBuilder = new NotificationCompat.Builder(this, getString(R.string.wearable_only_id))
                 .setSmallIcon(R.drawable.ic_lightbulb_on_black_18dp)
-                .setContentTitle(title)
-                .setContentText(text)
+                .setContentTitle(getString(R.string.wearable_only_title))
+                .setContentText(getString(R.string.wearable_only_text))
                 .extend(wearableExtender)
-                .addAction(R.drawable.ic_alert_black_18dp, "Display the toast on the phone!",
-                        viewPendingIntent);
+                .addAction(R.drawable.ic_alert_black_18dp, getString(R.string.action_button_text),
+                        createPendingIntent(0, getString(R.string.toast_phone)));
 
-        notify(builder.build());
+        notify(notificationBuilder.build());
     }
 
     private void notify(Notification notification) {
