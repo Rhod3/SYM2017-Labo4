@@ -10,5 +10,10 @@ public class Constants {
 
     public static final String MY_PENDING_INTENT_ACTION = "ch.heigvd.iict.sym.sym_labo4/MY_MESSAGE";
 
+    public static final String COLORS_MAP = "/RGB";
+    public static final String RED = "R";
+    public static final String GREEN = "G";
+    public static final String BLUE = "B";
+
     // MAY BE USED TO STORE CONSTANTS SHARED BY THE 2 APPLICATIONS
 }

@@ -14,12 +14,13 @@ import com.google.android.gms.wearable.DataMap;
 import com.google.android.gms.wearable.DataMapItem;
 import com.google.android.gms.wearable.Wearable;
 
+import ch.heigvd.iict.sym.wearcommon.Constants;
+
 public class WearSynchronizedActivity extends AppCompatActivity implements DataClient.OnDataChangedListener {
 
     private static final String TAG = WearSynchronizedActivity.class.getSimpleName();
 
     // Inspired from https://developer.android.com/training/wearables/data-layer/data-items.html
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,22 +42,18 @@ public class WearSynchronizedActivity extends AppCompatActivity implements DataC
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Wearable.getDataClient(getApplicationContext()).removeListener(this);
-    }
-
-    @Override
     public void onDataChanged(@NonNull DataEventBuffer dataEventBuffer) {
         for (DataEvent event : dataEventBuffer) {
             if (event.getType() == DataEvent.TYPE_CHANGED) {
                 DataItem item = event.getDataItem();
 
-                if (item.getUri().getPath().compareTo("/colors") == 0) {
+                if (item.getUri().getPath().compareTo(Constants.COLORS_MAP) == 0) {
+
+                    // Retrieve the color and update them accordingly
                     DataMap map = DataMapItem.fromDataItem(item).getDataMap();
-                    updateColor(map.getInt("R"),
-                            map.getInt("G"),
-                            map.getInt("B"));
+                    updateColor(map.getInt(Constants.RED),
+                            map.getInt(Constants.GREEN),
+                            map.getInt(Constants.BLUE));
                 }
             }
         }
