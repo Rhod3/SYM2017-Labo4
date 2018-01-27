@@ -14,6 +14,7 @@ import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.Wearable;
 
 import ch.heigvd.iict.sym.sym_labo4.widgets.CircularSliderRangeFixed;
+import ch.heigvd.iict.sym.wearcommon.Constants;
 
 public class MainActivityWear extends WearableActivity {
 
@@ -129,20 +130,15 @@ public class MainActivityWear extends WearableActivity {
         int g = (int) Math.round(255 * ((endAngleGreen - startAngleGreen) % 360) / 360.0);
         int b = (int) Math.round(255 * ((endAngleBlue  - startAngleBlue)  % 360) / 360.0);
 
+        // Prepare the data item containing the colors
+        PutDataMapRequest colors = PutDataMapRequest.create(Constants.COLORS_MAP);
+        colors.getDataMap().putInt(Constants.RED, r);
+        colors.getDataMap().putInt(Constants.GREEN, g);
+        colors.getDataMap().putInt(Constants.BLUE, b);
+
+        // Sync it
         DataClient client = Wearable.getDataClient(getApplicationContext());
-
-        PutDataMapRequest putDataMapRequest = PutDataMapRequest.create("/colors");
-        putDataMapRequest.getDataMap().putInt("R", r);
-        putDataMapRequest.getDataMap().putInt("G", g);
-        putDataMapRequest.getDataMap().putInt("B", b);
-
-        Task<DataItem> putTask = client.putDataItem(putDataMapRequest.asPutDataRequest());
-        putTask.addOnSuccessListener(new OnSuccessListener<DataItem>() {
-            @Override
-            public void onSuccess(DataItem dataItem) {
-                System.out.println("Success!");
-            }
-        });
+        client.putDataItem(colors.asPutDataRequest());
     }
 
 }
