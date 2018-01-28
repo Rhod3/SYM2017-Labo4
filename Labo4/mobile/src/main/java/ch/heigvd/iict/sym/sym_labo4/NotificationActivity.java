@@ -25,7 +25,7 @@ public class NotificationActivity extends AppCompatActivity {
     // Button to send a notification with wearable only features
     private Button wearableOnly;
 
-    //Notification builder used to build the notification
+    // Notification builder used to build the notification
     private NotificationCompat.Builder notificationBuilder;
 
     // Notification manager used to send the notification
